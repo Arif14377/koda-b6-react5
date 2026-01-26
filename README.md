@@ -5,5 +5,5 @@ Membuat replika google form dan menampilkan history datanya.
 - Tailwind
 - React-Hook-Form
 - Yup
-- Component
+- Component reusable
 - JSDoc
