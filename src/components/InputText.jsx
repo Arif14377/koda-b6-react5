@@ -12,11 +12,11 @@
  */
 
 function InputText(props) {
-  const { idName, labelInput, placeholder } = props;
+  const { idName, labelInput, placeholder, ...rest } = props;
   return (
     <div className="flex flex-col rounded-lg w-full bg-white shadow-lg px-4 py-6 gap-6">
         <label htmlFor={idName}>{labelInput} <span className="text-red-600">*</span> </label>
-        <input type="text" id={idName} name={idName} placeholder={placeholder} className="focus:border-blue-600 focus:outline-hidden"/>
+        <input type="text" id={idName} placeholder={placeholder} className="focus:border-blue-600 focus:outline-hidden" {...rest}/>
     </div>
   )
 }
