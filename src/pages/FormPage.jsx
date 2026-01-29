@@ -19,6 +19,9 @@ function FormPage(props) {
     defaultValues: {
         name: "",
         age: "",
+        gender: "",
+        isSmoker: "",
+        cigarette: []
     }
   })
 
