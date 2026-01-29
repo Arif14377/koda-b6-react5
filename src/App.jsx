@@ -19,7 +19,8 @@ function App() {
       element: <FormPage setSubmitHistory={setSubmitHistory}/>
     },
     { path: "/submission",
-      element: <Submission submitHistory={submitHistory}/> }
+      element: <Submission submitHistory={submitHistory}/>
+    }
   ])
 
   return <RouterProvider router={router} />

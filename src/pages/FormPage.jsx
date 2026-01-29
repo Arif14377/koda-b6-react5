@@ -2,11 +2,24 @@ import { useEffect } from 'react'
 import InputText from '../components/InputText.jsx'
 import {useForm} from "react-hook-form"
 import Button from '../components/Button.jsx'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from "yup"
+import { InputRadio } from '../components/InputRadio.jsx'
+
+const schemaValidation = yup.object({
+    name: yup.string().required().min(2),
+    age: yup.number().required().min(1)
+})
 
 function FormPage(props) {
   const {setSubmitHistory} = props
-  const {handleSubmit, register}= useForm()
+  const {handleSubmit, register, formState}= useForm({
+    defaultValues: {
+        name: "",
+        age: "",
+    }
+  })
 
   function submitForm(values){
     const pullHistory = JSON.parse(localStorage.getItem("submitHistory"))
@@ -35,6 +48,16 @@ function FormPage(props) {
         </div>
         <InputText idName="name" labelInput="Siapa nama Anda?" {...register("name")} placeholder="Your answer"/>
         <InputText idName="age" labelInput="Berapa umur Anda?" {...register("age")} placeholder="Your answer"/>
+        <div className="flex flex-col rounded-lg w-full bg-white shadow-lg px-4 py-6 gap-6">
+            <label>Apa jenis kelamin Anda? <span className="text-red-600">*</span> </label>
+            <InputRadio type="radio" name={"gender"} id={"men"} value={"Laki-laki"} label={"Laki-laki"} className="focus:border-blue-600 focus:outline-hidden"/>
+            <InputRadio type="radio" name={"gender"} id={"women"} value={"women"} label={"Perempuan"} className="focus:border-blue-600 focus:outline-hidden"/>
+        </div>
+        <div className="flex flex-col rounded-lg w-full bg-white shadow-lg px-4 py-6 gap-6">
+            <label>Apakah Anda Perokok? <span className="text-red-600">*</span> </label>
+            <InputRadio type="radio" name={"isSmoker"} id={"ya"} value={"smoker"} label={"Ya"} className="focus:border-blue-600 focus:outline-hidden"/>
+            <InputRadio type="radio" name={"isSmoker"} id={"tidak"} value={"non-smoker"} label={"Tidak"} className="focus:border-blue-600 focus:outline-hidden"/>
+        </div>
         <Button/>
       </form>
       <Link to="/submission">Lihat History</Link>
