@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup"
 import { InputRadio } from '../components/InputRadio.jsx'
+import { InputCheckbox } from '../components/InputCheckbox.jsx'
 
 const schemaValidation = yup.object({
     name: yup.string().required().min(2),
@@ -50,13 +51,21 @@ function FormPage(props) {
         <InputText idName="age" labelInput="Berapa umur Anda?" {...register("age")} placeholder="Your answer"/>
         <div className="flex flex-col rounded-lg w-full bg-white shadow-lg px-4 py-6 gap-6">
             <label>Apa jenis kelamin Anda? <span className="text-red-600">*</span> </label>
-            <InputRadio type="radio" name={"gender"} id={"men"} value={"Laki-laki"} label={"Laki-laki"} className="focus:border-blue-600 focus:outline-hidden"/>
-            <InputRadio type="radio" name={"gender"} id={"women"} value={"women"} label={"Perempuan"} className="focus:border-blue-600 focus:outline-hidden"/>
+            <InputRadio type="radio" {...register("gender")} id={"men"} value={"Laki-laki"} label={"Laki-laki"} className="focus:border-blue-600 focus:outline-hidden"/>
+            <InputRadio type="radio" {...register("gender")} id={"women"} value={"women"} label={"Perempuan"} className="focus:border-blue-600 focus:outline-hidden"/>
         </div>
         <div className="flex flex-col rounded-lg w-full bg-white shadow-lg px-4 py-6 gap-6">
             <label>Apakah Anda Perokok? <span className="text-red-600">*</span> </label>
-            <InputRadio type="radio" name={"isSmoker"} id={"ya"} value={"smoker"} label={"Ya"} className="focus:border-blue-600 focus:outline-hidden"/>
-            <InputRadio type="radio" name={"isSmoker"} id={"tidak"} value={"non-smoker"} label={"Tidak"} className="focus:border-blue-600 focus:outline-hidden"/>
+            <InputRadio {...register("isSmoker")} id={"ya"} value={"smoker"} label={"Ya"} className="focus:border-blue-600 focus:outline-hidden"/>
+            <InputRadio {...register("isSmoker")} id={"tidak"} value={"non-smoker"} label={"Tidak"} className="focus:border-blue-600 focus:outline-hidden"/>
+        </div>
+        <div className="flex flex-col rounded-lg w-full bg-white shadow-lg px-4 py-6 gap-6">
+            <label>Jika Anda perokok, rokok apa yang pernah Anda coba? <span className="text-red-600">*</span> </label>
+            <InputCheckbox {...register("cigarette")} id={"gudangGaram"} value={"Gudang Garam"} label={"Gudang Garam"} className="focus:border-blue-600 focus:outline-hidden"/>
+            <InputCheckbox {...register("cigarette")} id={"filter"} value={"Filter"} label={"Filter"} className="focus:border-blue-600 focus:outline-hidden"/>
+            <InputCheckbox {...register("cigarette")} id={"luckyStrike"} value={"Lucky Strike"} label={"Lucky Strike"} className="focus:border-blue-600 focus:outline-hidden"/>
+            <InputCheckbox {...register("cigarette")} id={"marlboro"} value={"Marlboro"} label={"Marlboro"} className="focus:border-blue-600 focus:outline-hidden"/>
+            <InputCheckbox {...register("cigarette")} id={"esse"} value={"Esse"} label={"Esse"} className="focus:border-blue-600 focus:outline-hidden"/>
         </div>
         <Button/>
       </form>
